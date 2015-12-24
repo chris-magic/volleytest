@@ -1,18 +1,12 @@
 package yfz.com.volleytest.network;
 
 import android.content.Context;
-import android.test.ApplicationTestCase;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.Volley;
-
-import java.util.Map;
 
 /**
  * ***************************************************************************
@@ -24,7 +18,6 @@ import java.util.Map;
 public class RequestManager {
 
     private static final String TAG = "RequestManager";
-
 
 
     /**
@@ -42,17 +35,17 @@ public class RequestManager {
      */
     private Context mAppContext;
 
-    private RequestManager(Context appContext) {
+    private RequestManager ( Context appContext ) {
         mAppContext = appContext;
-        mRequestQueue = Volley.newRequestQueue(mAppContext ,new OkHttpStack());
+        mRequestQueue = Volley.newRequestQueue( mAppContext, new OkHttpStack() );
     }
 
-    public static RequestManager getInstance(Context context) {
+    public static RequestManager getInstance ( Context context ) {
 
-        if (null == sInstance) {
-            synchronized (RequestManager.class) {
-                if (null == sInstance) {
-                    sInstance = new RequestManager(context.getApplicationContext());
+        if ( null == sInstance ) {
+            synchronized ( RequestManager.class ) {
+                if ( null == sInstance ) {
+                    sInstance = new RequestManager( context.getApplicationContext() );
                 }
             }
         }
@@ -60,20 +53,20 @@ public class RequestManager {
     }
 
 
-    public RequestQueue getRequestQueue() {
+    public RequestQueue getRequestQueue () {
         return mRequestQueue;
     }
 
-    public <T> void addToRequestQueue(Request<T> req, String tag) {
+    public < T > void addToRequestQueue ( Request< T > req, String tag ) {
 
-        req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+        req.setTag( TextUtils.isEmpty( tag ) ? TAG : tag );
 
-        VolleyLog.d("Adding request to queue: %s", req.getUrl());
-        getRequestQueue().add(req);
+        VolleyLog.d( "Adding request to queue: %s", req.getUrl() );
+        getRequestQueue().add( req );
     }
 
-    public void cancelRequestByTag(String tag) {
-        getRequestQueue().cancelAll(tag);
+    public void cancelRequestByTag ( String tag ) {
+        getRequestQueue().cancelAll( tag );
     }
 
 

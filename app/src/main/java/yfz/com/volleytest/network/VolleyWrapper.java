@@ -41,7 +41,6 @@ public class VolleyWrapper<T> {
         GsonRequest<T> request = new GsonRequest<>(method, url, mClass, mListener, mErrorListener);
         request.setTag(tag);
         RequestManager.getInstance(null).getRequestQueue().add(request);
-
     }
 
     /**
