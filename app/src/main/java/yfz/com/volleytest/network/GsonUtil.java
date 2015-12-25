@@ -1,4 +1,4 @@
-package yfz.com.volleytest.network2.http;
+package yfz.com.volleytest.network;
 
 import com.google.gson.Gson;
 
@@ -7,10 +7,6 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * ***************************************************************************
- * E城到家
- * <p/>
- * ****************************************************************************
  * Authors:huweidong on 2015/11/7
  * Email：huwwds@gmail.com
  */
@@ -18,7 +14,7 @@ public final class GsonUtil {
     private static Gson gson = null;
 
     /**
-     * 对集合内部泛型Type的封装
+     * 集合内部泛型Type
      */
     public static class ListDynamicGenericType implements ParameterizedType {
 
@@ -45,9 +41,7 @@ public final class GsonUtil {
     }
 
     static {
-        if ( gson == null ) {
-            gson = new Gson();
-        }
+        gson = new Gson();
     }
 
     private GsonUtil () {
