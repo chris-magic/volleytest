@@ -7,9 +7,9 @@ import org.json.JSONArray;
 import java.util.HashMap;
 import java.util.Map;
 
-import yfz.com.volleytest.network2.http.GsonUtil;
-import yfz.com.volleytest.network2.manager.RequestManager;
-import yfz.com.volleytest.network2.manager.RequestMap;
+import yfz.com.volleytest.network.DataRequest;
+import yfz.com.volleytest.network.GsonUtil;
+import yfz.com.volleytest.network.RequestMap;
 import yfz.com.volleytest.urls.URLS;
 import yfz.com.volleytest.utils.RSAUtils;
 
@@ -20,7 +20,7 @@ import yfz.com.volleytest.utils.RSAUtils;
  * Authors:chris on 12/25/15 11:10
  * Email：zhangyanlongcodec@gmail.com
  */
-public class UserPrivilege implements  RequestManager.RequestListener{
+public class UserPrivilege implements  DataRequest.RequestListener{
 
     /**
      * 定义网络请求requestid
@@ -47,16 +47,11 @@ public class UserPrivilege implements  RequestManager.RequestListener{
         requestMap.put("jsonData", jsonData);
 
         // 发起网络请求
-        RequestManager.getInstance().post(URLS.GET_ROLER_INFO_URL,
+        DataRequest.getInstance().post(URLS.GET_ROLER_INFO_URL,
                 requestMap,
                 this,
                 REQUEST_ID_GET_ROLE_INFOR );
 
-    }
-
-    @Override
-    public void onRequest() {
-        Log.i("===", "__in onRequest function");
     }
 
     @Override

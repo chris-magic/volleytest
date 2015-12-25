@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import yfz.com.volleytest.network2.manager.RequestManager;
-import yfz.com.volleytest.network2.manager.RequestManager.RequestListener;
-import yfz.com.volleytest.network2.manager.RequestMap;
+import yfz.com.volleytest.network.DataRequest;
+import yfz.com.volleytest.network.RequestMap;
 import yfz.com.volleytest.urls.URLS;
 import yfz.com.volleytest.utils.RSAUtils;
 
@@ -23,7 +22,7 @@ import yfz.com.volleytest.utils.RSAUtils;
  * Authors:chris on 12/25/15 10:15
  * Email：zhangyanlongcodec@gmail.com
  */
-public class LoginTask implements  RequestManager.RequestListener{
+public class LoginTask implements  DataRequest.RequestListener{
 
     /**
      * 在这里可以定义网络请求的 request id .
@@ -52,7 +51,7 @@ public class LoginTask implements  RequestManager.RequestListener{
             requestMap.put("txtPassword", RSAUtils.encryptByPublicKey(params[1], pubKey));
 
             // 发起网络请求
-            RequestManager.getInstance().post( requestUrl, requestMap, this, 100002 );
+            DataRequest.getInstance().post( requestUrl, requestMap, this, 100002 );
 
 //            HttpUtils httputils = new HttpUtils();
 //            httputils.getHttpClient();
@@ -87,10 +86,6 @@ public class LoginTask implements  RequestManager.RequestListener{
     }
 
 
-    @Override
-    public void onRequest() {
-        Log.i("==" ,"====onRequest" );
-    }
 
     @Override
     public void onSuccess(String response, Map<String, String> headers, String url, int requestId) {
