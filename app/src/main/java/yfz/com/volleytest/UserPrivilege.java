@@ -33,24 +33,19 @@ public class UserPrivilege implements  DataRequest.RequestListener{
      */
     public void getRoleInfor(String cityName) {
 
+//
+//        // 参数 用户名+密码
+//        RequestMap requestMap = new RequestMap();
+//        // 调试模式要加
+//        requestMap.put("cityName", cityName);
 
-        // 参数 用户名+密码
-        RequestMap requestMap = new RequestMap();
-        // 调试模式要加
-        requestMap.put("debug", "true");
-
-        // other parameter
-        Map<String, String> map = new HashMap<String, String>();
+        HashMap map = new HashMap();
         map.put("cityName", cityName);
-
-        String jsonData = GsonUtil.obj2json(map).toString();
-        requestMap.put("jsonData", jsonData);
-
         // 发起网络请求
-        DataRequest.getInstance().post(URLS.GET_ROLER_INFO_URL,
-                requestMap,
+        DataRequest.getInstance().postWithCustomParams(URLS.GET_ROLER_INFO_URL,
+                map,
                 this,
-                REQUEST_ID_GET_ROLE_INFOR );
+                REQUEST_ID_GET_ROLE_INFOR);
 
     }
 

@@ -79,6 +79,14 @@ public class RequestMap {
         return entity;
     }
 
+    public ConcurrentHashMap<String, String> getUrlParams() {
+        return urlParams;
+    }
+
+    public void setUrlParams(ConcurrentHashMap<String, String> urlParams) {
+        this.urlParams = urlParams;
+    }
+
     private static class FileWrapper {
         public InputStream inputStream;
         public String fileName;

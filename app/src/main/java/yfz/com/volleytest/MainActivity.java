@@ -34,12 +34,12 @@ public class MainActivity extends AppCompatActivity implements DataRequest.Reque
                 /**
                  * 用户登录 测试
                  */
-                new LoginTask().login("13391538173" ,"a19861010");
+                //new LoginTask().login("13391538173" ,"a19861010");
 
                 /**
                  * 用户权限 测试
                  */
-                //new UserPrivilege().getRoleInfor("廊坊");
+                new UserPrivilege().getRoleInfor("廊坊");
             }
         }).start();
     }
