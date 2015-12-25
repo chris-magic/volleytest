@@ -27,10 +27,29 @@ public class MainActivity extends AppCompatActivity implements yfz.com.volleytes
 
 //        testRequest();
 //        testGet();
-        testGet2();
-        testPost();
-        testUploadFile();
+//        testGet2();
+//        testPost();
+//        testUploadFile();
+
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                /**
+                 * 用户登录 测试
+                 */
+//                new LoginTask().login("13391538173" ,"a19861010");
+
+                /**
+                 * 用户权限 测试
+                 */
+                new UserPrivilege().getRoleInfor("廊坊");
+            }
+        }).start();
     }
+
+
 
     private void testUploadFile () {
 
@@ -136,14 +155,6 @@ public class MainActivity extends AppCompatActivity implements yfz.com.volleytes
 
         //
         requestManager.addToRequestQueue( stringRequest, "tag" );
-
-
-//        VolleyWrapper volleyWrapper=new VolleyWrapper<>(Request.Method.GET,
-//                "http://www.baidu.com" ,
-//                null,new RequestSuccessListener<T>(),new RequestErrorListener());
-        //volleyWrapper.addUrlParameter(urlParams); // 添加请求参数
-        //volleyWrapper.sendGETRequest(tag);
-
     }
 
 }
