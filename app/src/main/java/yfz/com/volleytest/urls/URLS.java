@@ -66,40 +66,46 @@ public class URLS {
     /**
      * 判断当前城市是否有邀请码活动
      */
-    public static final boolean LOGSHOW=true;
+    public static final boolean LOGSHOW = true;
     public static final String HOME_SERVER_INDEX_URL = "http://183.196.130.125:8085/";//上门服务及水费url主链接测试
     public static final String HOME_SERVER_INDEX_M_URL = "http://183.196.130.125:8099/";//上门师傅的主地址测试
     //	public static final String HOME_SERVER_INDEX_URL = "http://10.37.144.19:8080/";//内网
 //	public static final String HOME_SERVER_INDEX_M_URL = "http://10.37.144.19:8099/";//内网
-    public static final String mMode="01";//银联支付的环境测试
+    public static final String mMode = "01";//银联支付的环境测试
 
     //请求url版本号
-    public static final String REQVERSION="1.0";
+    public static final String REQVERSION = "1.0";
 
     /******************************* 请求服务的模块名以及方法名 ******************************/
-    /** 分享使用的图标网站路径 **/
+    /**
+     * 分享使用的图标网站路径
+     **/
     public static String SHARE_PIC_URL = "http://ennewapp.enn.cn:8085/EnnewFiles/images/ennewlog.png";
 
-    /** 新增首页通知接口 2015.12.17 康康 **/
-    public static String GET_MSG_INFO_URL = HOME_SERVER_INDEX_URL+ "comeservice/notice/getnotice";
+    /**
+     * 新增首页通知接口 2015.12.17 康康
+     **/
+    public static String GET_MSG_INFO_URL = HOME_SERVER_INDEX_URL + "comeservice/notice/getnotice";
 
-    /** 修改获取业务权限 接口 2015.12.10 景辉 **/
-    public static String GET_ROLER_INFO_URL = HOME_SERVER_INDEX_URL+ "common/config/cityConfig/";
+    /**
+     * 修改获取业务权限 接口 2015.12.10 景辉
+     **/
+    public static String GET_ROLER_INFO_URL = HOME_SERVER_INDEX_URL + "common/config/cityConfig/";
 
     /**
      * 获取钱包余额 2015.11.17 钱包支付需要
      */
-    public static String GET_WALLET_INFO_URL = HOME_SERVER_INDEX_URL+ "Activity/getActivitylist";
+    public static String GET_WALLET_INFO_URL = HOME_SERVER_INDEX_URL + "Activity/getActivitylist";
 
     /**
      * 锁钱包状态 2015.11.17 钱包支付需要
      */
-    public static String LOCK_WALLET_STATUS_URL = HOME_SERVER_INDEX_URL+ "Activity/WalletConsume";
+    public static String LOCK_WALLET_STATUS_URL = HOME_SERVER_INDEX_URL + "Activity/WalletConsume";
 
     /**
      * 获取分享码
      */
-    public static String SHARED_APP_CODE = getServerUrl()+ "api/activities/invitation.json";
+    public static String SHARED_APP_CODE = getServerUrl() + "api/activities/invitation.json";
     /**
      * 分享的下载链接
      */
@@ -108,7 +114,7 @@ public class URLS {
     /**
      * 判断当前城市是否有邀请码活动
      */
-    public static String APP_CODE_TRACE = getServerUrl()+ "api/activities/trace.json";
+    public static String APP_CODE_TRACE = getServerUrl() + "api/activities/trace.json";
 
     /**
      * 检查APK当前版本是否是最新版本
@@ -152,7 +158,7 @@ public class URLS {
     public static String GET_ACCOUNTNUMBER = "api/ordinary/list.json";
     /**
      * 删除燃气账号
-     * */
+     */
     public static String DETELE_ACCOUNTNUMBER_GAS = "api/ordinary/remove.json";
     /**
      * 修改手机号码 验证
@@ -164,7 +170,7 @@ public class URLS {
     public static String CELL_SUCCESS = "api/user/modifyTelPhone.json";
     /**
      * 修改 分组
-     * */
+     */
     public static String UPDATE_GROUP = "api/ordinary/update.json";
     /**
      * 修改昵称
@@ -366,7 +372,9 @@ public class URLS {
      */
     public static String OPEN_REDPAPER_TASKS = "api/activities/open.json";
 
-    /******************************* Water Start ******************************/
+    /*******************************
+     * Water Start
+     ******************************/
 
     public static final String WATER_INDEX_URL = HOME_SERVER_INDEX_URL;
 
@@ -452,30 +460,28 @@ public class URLS {
             + "comeservice/address/getBuildinglist";
     /**
      * WyuMer 我的订单列表
-     *
-     * */
+     */
     public static final String HOME_SERVER_ORDER_URL = HOME_SERVER_INDEX_URL
             + "comeservice/order/orderList";
     /**
      * WyuMer 我的订单详情
-     *
-     * */
+     */
     public static final String HOME_SERVER_ORDER_Details_URL = HOME_SERVER_INDEX_URL
             + "comeservice/order/orderInfo";
     /**
      * WyuMer 历史地址
-     * */
+     */
     public static final String HOME_SERVER_HISTORY_ADDRESS_URL = HOME_SERVER_INDEX_URL
             + "comeservice/address/getHisaddressList";
     /**
      * WyuMer服务介绍
-     * */
+     */
     public static final String HOME_SERVER_INTRODUCE_URL = HOME_SERVER_INDEX_URL
             + "comeservice/server/introduce";
 
     /**
      * WyuMer录音上传
-     * */
+     */
 
     // public static final String
     // HOME_SERVER_VOICE_URL="http://10.4.44.195:8080/utilities-customer/common/resource/uploadresource";
@@ -495,14 +501,14 @@ public class URLS {
 
     /**
      * WyuMer弹出时间
-     * */
+     */
     // public static final String
     // HOME_SERVER_SHOW_TIME_URL="http://10.4.45.144:8080/utilities-customer/homeserver/time/getTime?debug=true";
     public static final String HOME_SERVER_SHOW_TIME_URL = HOME_SERVER_INDEX_URL
             + "comeservice/worktime/getTime";
     /**
      * WyuMer提交订单
-     * */
+     */
     public static final String HOME_SERVER_ORDER_UP_URL = HOME_SERVER_INDEX_URL
             + "comeservice/order/createServiceOrder";
 
@@ -518,24 +524,23 @@ public class URLS {
             + "dispatch/api/home/master/list.do";
     /**
      * 核算价格
-     *
-     * */
+     */
     public static final String HOME_SERVER_CHARG_LIST_URL = HOME_SERVER_INDEX_URL
             + "comeservice/order/priceTotal";
     /**
      * 等待付款
-     * */
+     */
     public static final String HOME_SERVER_WAIT_PAY_LIST_URL = HOME_SERVER_INDEX_URL
             + "comeservice/order/payorderInfo";
     /**
      * WyuMer查询订单详情
-     * */
+     */
     public static final String HOME_SERVER_ORDER_DETAILS_URL = HOME_SERVER_INDEX_URL
             + "comeservice/order/orderInfo";
 
     /**
      * WyuMer取消订单
-     * */
+     */
     public static final String HOME_SERVER_FAILS_ORDER_DETAILS_URL = HOME_SERVER_INDEX_URL
             + "homeserver/order/cancleOrder";
     /**
@@ -545,7 +550,7 @@ public class URLS {
             + "comeservice/orderattached/cancelorder";
     /**
      * d得到工作站坐标
-     * */
+     */
     public static final String HOME_GET_POSITION_CANCLE_URL = HOME_SERVER_INDEX_M_URL
             + "dispatch/api/home/master/getStationStationpositionList.json";
 
