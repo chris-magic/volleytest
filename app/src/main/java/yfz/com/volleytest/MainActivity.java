@@ -4,26 +4,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
+import java.io.File;
 import java.util.Map;
 
-import yfz.com.volleytest.network.RequestManager;
-import yfz.com.volleytest.network2.manager.LoadController;
-import yfz.com.volleytest.network2.manager.RequestMap;
+import yfz.com.volleytest.network.DataRequest;
+import yfz.com.volleytest.network.RequestMap;
 
-public class MainActivity extends AppCompatActivity implements yfz.com.volleytest.network2.manager.RequestManager.RequestListener {
+public class MainActivity extends AppCompatActivity implements DataRequest.RequestListener {
 
     public static final String TAG = "MainActivity";
-    private LoadController mLoadController;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
-        yfz.com.volleytest.network2.manager.RequestManager.getInstance().init( this );
+        getDataRequest().init( this );
 
 //        testRequest();
 //        testGet();
@@ -50,36 +45,37 @@ public class MainActivity extends AppCompatActivity implements yfz.com.volleytes
     }
 
 
-
     private void testUploadFile () {
-
+        RequestMap params = new RequestMap();
+        params.put( "key", "value" );
+        params.put( "uploadedfile", new File( getFilesDir(), "uplodate.txt" ) );
+        getDataRequest().post( "url", params, this, 100000 );
     }
 
     private void testPost () {
-        RequestMap requestMap = new RequestMap();
-        requestMap.put( "key", "value" );
-        yfz.com.volleytest.network2.manager.RequestManager.getInstance().post( "http://www.baidu.com", requestMap, this, 100002 );
+        RequestMap params = new RequestMap();
+        params.put( "key", "value" );
+
+        getDataRequest().post( "http://www.baidu.com", params, this, 100001 );
     }
 
-    private void testGet2 () {
-        mLoadController = yfz.com.volleytest.network2.manager.RequestManager.getInstance().get( "http://www.baidu.com", this, 100001 );
-    }
-
-    @Override
-    public void onRequest () {
-        Log.i( "hwd", "request send ..." );
+    private void testGet () {
+        getDataRequest().get( "http://www.taobao.com", this, 100002 );
     }
 
     @Override
     public void onSuccess ( String response, Map< String, String > headers, String url, int requestId ) {
-
+        Log.i( "hwd", "requestId  " + requestId + "  json " + response );
 //        HttpEntity httpEntity = GsonUtil.json2Obj( response, HttpEntity.class );    //如果有可用json  , 使用GsonUtil进行转换
-
         switch ( requestId ) {
-            case 100001:
-                Log.i( "hwd", response );
+            case 100000:
+                //TODO 处理上传文件回调
                 break;
-            case 10002:
+            case 100001:
+                //TODO 处理Post请求回调
+                break;
+            case 100002:
+                //TODO 处理Get请求回调
                 break;
             default:
                 break;
@@ -88,11 +84,8 @@ public class MainActivity extends AppCompatActivity implements yfz.com.volleytes
 
     @Override
     public void onError ( String errorMsg, String url, int requestId ) {
+        //关闭ProgressBar
         switch ( requestId ) {
-            case 10001:
-                break;
-            case 10002:
-                break;
             default:
                 break;
         }
@@ -101,60 +94,20 @@ public class MainActivity extends AppCompatActivity implements yfz.com.volleytes
     @Override
     public void onBackPressed () {
         super.onBackPressed();
-        mLoadController.cancel();
+        getDataRequest().cancelAllRequests();
     }
 
     @Override
     protected void onDestroy () {
         super.onDestroy();
-        mLoadController.cancel();//不合理
+        getDataRequest().cancelAllRequests();
     }
 
 
-//    private void testGet () {
-//        VolleyWrapper wrapper = new VolleyWrapper( Request.Method.GET, "http://www.baidu.com", Void.class, new Response.Listener() {
-//            @Override
-//            public void onResponse ( Object response ) {
-//                if ( response == null ) {
-//                    Log.i( "hwd", "null" );
-//                }
-//                Log.i( "hwd", response.toString() );
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse ( VolleyError error ) {
-//                Log.i( "hwd", "错误    " + error.getMessage() );
-//            }
-//        } );
-//        wrapper.sendRequest( this.getClass().getSimpleName() );
-//    }
+    protected DataRequest getDataRequest () {
+        return DataRequest.getInstance();
 
-    private void testRequest () {
-        // 获取网络请求主类
-        RequestManager requestManager = RequestManager.getInstance( this );
-
-        StringRequest stringRequest = new StringRequest( "http://www.baidu.com",
-
-                new Response.Listener< String >() {
-
-                    @Override
-                    public void onResponse ( String response ) // 服务器端返回的字符串
-                    {
-                        Log.e( "TAG", response );
-
-                    }
-                },
-
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse ( VolleyError error ) {
-                        Log.e( "TAG", error.getMessage(), error );
-                    }
-                } );
-
-
-        //
-        requestManager.addToRequestQueue( stringRequest, "tag" );
     }
+
 
 }

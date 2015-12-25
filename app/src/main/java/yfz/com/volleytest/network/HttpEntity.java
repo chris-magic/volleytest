@@ -1,4 +1,4 @@
-package yfz.com.volleytest.network2.http;
+package yfz.com.volleytest.network;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -31,7 +31,6 @@ public class HttpEntity {
 	}
 	
 	public HttpEntity() {
-
 	}
 
 	public InputStream getInputStream() {

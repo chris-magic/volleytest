@@ -1,10 +1,9 @@
-package yfz.com.volleytest.network2.manager;
+package yfz.com.volleytest.network;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 
@@ -15,8 +14,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import yfz.com.volleytest.network2.http.HttpEntity;
-
 class ByteArrayRequest extends Request<NetworkResponse> {
 
 	private final Listener<NetworkResponse> mListener;
@@ -25,8 +22,8 @@ class ByteArrayRequest extends Request<NetworkResponse> {
 
 	private HttpEntity httpEntity =null;
 
-	public ByteArrayRequest(int method, String url, Object postBody, Listener<NetworkResponse> listener, ErrorListener errorListener) {
-		super(method, url, errorListener);
+	public ByteArrayRequest(int method, String url, Object postBody, LoadController listener) {
+		super(method, url, listener);
 		this.mPostBody = postBody;
 		this.mListener = listener;
 
